@@ -4,10 +4,10 @@ EXPOSE 5000
 
 FROM mcr.microsoft.com/dotnet/sdk:5.0 AS build
 WORKDIR /src
-COPY ["webappdemo.csproj", "webappdemo/"]
-RUN dotnet restore "webappdemo/webappdemo.csproj"
+COPY ["webappdemo.csproj", "./"]
+RUN dotnet restore "webappdemo.csproj"
 COPY . .
-WORKDIR "/src/webappdemo"
+WORKDIR "/src/."
 RUN dotnet build "webappdemo.csproj" -c Release -o /app/build
 
 FROM build AS publish
